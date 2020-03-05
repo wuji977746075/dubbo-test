@@ -1,13 +1,12 @@
-package com.rainbow.dubbo;
+package com.rainbow.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserApp {
+public class ApiApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(UserApp.class, args);
+        SpringApplication.run(ApiApp.class,args);
     }
-
 }
