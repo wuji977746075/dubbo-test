@@ -41,6 +41,7 @@ public class HelloController {
             @ApiParam(name="uid",value = "用户主键,多个英文,拼接",type="Integer")
             @PathVariable(required = false) Integer uid
     ){
+        String name = "sss";
         return new User();
     }
 }

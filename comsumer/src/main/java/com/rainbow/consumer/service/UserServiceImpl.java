@@ -13,9 +13,9 @@ public class UserServiceImpl implements UserService {
     @Reference
     TicketService ticketService;
 
+    @Override
     public String buyTicket() {
         String ticket = ticketService.getTicket();
-        System.out.println("getTicket => "+ ticket);
         return "get ticket : "+ticket;
     }
 }
