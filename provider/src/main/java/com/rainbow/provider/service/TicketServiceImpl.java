@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class TicketServiceImpl implements TicketService {
     @Override
     public String getTicket() {
-        return "<a ticket ...>";
+        return "=> a ticket ...";
     }
 }

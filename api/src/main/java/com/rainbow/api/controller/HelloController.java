@@ -3,35 +3,31 @@ package com.rainbow.api.controller;
 import com.rainbow.common.model.User;
 import com.rainbow.common.service.TicketService;
 import io.swagger.annotations.*;
-import jdk.nashorn.internal.ir.annotations.Reference;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Api(value = "Hello服务",tags="首页接口")
 public class HelloController {
-
-//    @Reference
-//    TicketService ticketService;
-
-//    @RequestMapping("/error")
-//    public String err(){
-//        return "error has occur";
-//    }
+    @Reference
+    TicketService ticketService;
 
     @GetMapping(value = {"/","/hello"})
+    @ResponseBody
     @ApiOperation("首页信息")
     public String index(
-            @ApiParam(name="name",value = "名字",type = "String") String name
+            @ApiParam(name="name",value = "名字",type = "String")
+                    @RequestParam(required = false,defaultValue = "") String name
     ){
-        return "ticketService.getTicket()";
+        String ticket = ticketService.getTicket();
+        return name + "::"+ ticket;
     }
 
 
-    @PostMapping("/user/{id}")
+    @GetMapping("/user/{uid}")
+//    @PostMapping("/user/{uid}")
+    @ResponseBody
     @ApiOperation(value="用户查询",notes="用于查看具体用户信息")
     @ApiResponses({
             @ApiResponse(code = 200, message = "成功s"),
@@ -41,7 +37,7 @@ public class HelloController {
             @ApiParam(name="uid",value = "用户主键,多个英文,拼接",type="Integer")
             @PathVariable(required = false) Integer uid
     ){
-        String name = "sss";
+//        String name = "sss";
         return new User();
     }
 }
